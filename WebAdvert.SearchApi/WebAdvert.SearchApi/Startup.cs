@@ -36,6 +36,7 @@ namespace WebAdvert.SearchApi
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "WebAdvert.SearchApi", Version = "v1" });
             });
+            services.AddHealthChecks();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -47,7 +48,7 @@ namespace WebAdvert.SearchApi
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "WebAdvert.SearchApi v1"));
             }
-
+            app.UseHealthChecks("/health");
             app.UseHttpsRedirection();
 
             app.UseRouting();
